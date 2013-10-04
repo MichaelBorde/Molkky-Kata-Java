@@ -46,7 +46,7 @@ public class TestPartie {
 
 		boolean partieGagnée = partie.gagnée();
 
-		alors().la(partieGagnée).estVraie();
+		alors().ceci(partieGagnée).estVrai();
 	}
 
 	private void leJoueurMarque50Points() {
@@ -60,7 +60,7 @@ public class TestPartie {
 
 		boolean partieGagnée = partie.gagnée();
 
-		alors().la(partieGagnée).estFausse();
+		alors().ceci(partieGagnée).estFaux();
 	}
 
 	@Test
