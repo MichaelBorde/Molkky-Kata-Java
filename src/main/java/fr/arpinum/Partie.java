@@ -2,8 +2,8 @@ package fr.arpinum;
 
 public class Partie {
 
-	public void ajouteLancer(int... quilles) {
-		pointage += calculePointageLancer(quilles);
+	public void metsAJourLePointagePourLeLancer(int... quilles) {
+		pointage += calculePointageDuLancer(quilles);
 		siLePointageDepasse50IlRedescendA25();
 	}
 
@@ -13,20 +13,20 @@ public class Partie {
 		}
 	}
 
-	private int calculePointageLancer(int[] quilles) {
-		return uneSeuleQuilleTombée(quilles) ? valeurQuilleTombée(quilles) : nombreQuillesTombées(quilles);
+	private int calculePointageDuLancer(int[] quilles) {
+		return uneSeuleQuilleTombée(quilles) ? valeurQuilleTombée(quilles) : nombreDeQuillesTombées(quilles);
 	}
 
-	private int nombreQuillesTombées(int[] quilles) {
-		return quilles.length;
+	private boolean uneSeuleQuilleTombée(int[] quilles) {
+		return nombreDeQuillesTombées(quilles) == 1;
 	}
 
 	private int valeurQuilleTombée(int[] quilles) {
 		return quilles[0];
 	}
 
-	private boolean uneSeuleQuilleTombée(int[] quilles) {
-		return nombreQuillesTombées(quilles) == 1;
+	private int nombreDeQuillesTombées(int[] quilles) {
+		return quilles.length;
 	}
 
 	public int pointage() {

@@ -14,7 +14,7 @@ public class TestPartie {
 
 	@Test
 	public void siUnJoueurFaitTomberUneQuilleIlMarqueLaValeurDeLaQuille() {
-		partie.ajouteLancer(8);
+		partie.metsAJourLePointagePourLeLancer(8);
 
 		int pointage = partie.pointage();
 
@@ -23,7 +23,7 @@ public class TestPartie {
 
 	@Test
 	public void siUnJoueurFaitTomberPlusieursQuillesIlMarqueLeNombreDeQuilles() {
-		partie.ajouteLancer(3, 6);
+		partie.metsAJourLePointagePourLeLancer(3, 6);
 
 		int pointage = partie.pointage();
 
@@ -32,8 +32,8 @@ public class TestPartie {
 
 	@Test
 	public void lePointageDuJoueurEstLeCumulDePlusieursLancers() {
-		partie.ajouteLancer(1);
-		partie.ajouteLancer(3);
+		partie.metsAJourLePointagePourLeLancer(1);
+		partie.metsAJourLePointagePourLeLancer(3);
 
 		int pointage = partie.pointage();
 
@@ -51,12 +51,12 @@ public class TestPartie {
 
 	private void leJoueurMarque50Points() {
 		leJoueurMarque40Points();
-		partie.ajouteLancer(10);
+		partie.metsAJourLePointagePourLeLancer(10);
 	}
 
 	@Test
 	public void siLeJoueurAMoinsDe50PointsIlNAPasGagnéLaPartie() {
-		partie.ajouteLancer(1);
+		partie.metsAJourLePointagePourLeLancer(1);
 
 		boolean partieGagnée = partie.gagnée();
 
@@ -74,12 +74,12 @@ public class TestPartie {
 
 	private void leJoueurMarque51Points() {
 		leJoueurMarque40Points();
-		partie.ajouteLancer(11);
+		partie.metsAJourLePointagePourLeLancer(11);
 	}
 
 	private void leJoueurMarque40Points() {
 		for (int i = 0; i < 4; i++) {
-			partie.ajouteLancer(10);
+			partie.metsAJourLePointagePourLeLancer(10);
 		}
 	}
 
