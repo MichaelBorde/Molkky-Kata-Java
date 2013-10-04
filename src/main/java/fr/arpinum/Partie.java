@@ -14,7 +14,19 @@ public class Partie {
 	}
 
 	private int calculePointageLancer(int[] quilles) {
-		return quilles.length == 1 ? quilles[0] : quilles.length;
+		return uneSeuleQuilleTombée(quilles) ? valeurQuilleTombée(quilles) : nombreQuillesTombées(quilles);
+	}
+
+	private int nombreQuillesTombées(int[] quilles) {
+		return quilles.length;
+	}
+
+	private int valeurQuilleTombée(int[] quilles) {
+		return quilles[0];
+	}
+
+	private boolean uneSeuleQuilleTombée(int[] quilles) {
+		return nombreQuillesTombées(quilles) == 1;
 	}
 
 	public int pointage() {
