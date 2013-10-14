@@ -44,18 +44,18 @@ public class TestPartie {
 	public void siLeJoueurAtteint50PointsIlAGagnéLaPartie() {
 		partie.metsAJourLePointagePourLeLancer("Michael", 50);
 
-		boolean partieGagnée = partie.gagnéePour("Michael");
+		String vainqueur = partie.vainqueur();
 
-		alors().ceci(partieGagnée).estVrai();
+		alors().le(vainqueur).est("Michael");
 	}
 
 	@Test
 	public void siLeJoueurAMoinsDe50PointsIlNAPasGagnéLaPartie() {
 		partie.metsAJourLePointagePourLeLancer("Michael", 1);
 
-		boolean partieGagnée = partie.gagnéePour("Michael");
+		String vainqueur = partie.vainqueur();
 
-		alors().ceci(partieGagnée).estFaux();
+		alors().le(vainqueur).estNul();
 	}
 
 	@Test

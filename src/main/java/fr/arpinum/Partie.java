@@ -31,7 +31,16 @@ public class Partie {
 		return pointages.get(joueur);
 	}
 
-	public boolean gagnéePour(String joueur) {
+	public String vainqueur() {
+		for (String joueur : pointages.keySet()) {
+			if (gagnéePour(joueur)) {
+				return joueur;
+			}
+		}
+		return null;
+	}
+
+	private boolean gagnéePour(String joueur) {
 		return pointages.get(joueur) == 50;
 	}
 
