@@ -6,7 +6,7 @@ public class Lancer {
 		this.quilles = quilles;
 	}
 
-	public int calculePointageDuLancer() {
+	public int calculePointage() {
 		return uneSeuleQuilleTombée() ? valeurQuilleTombée() : nombreDeQuillesTombées();
 	}
 

@@ -1,41 +1,39 @@
 package fr.arpinum;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Partie {
 
-	public void metsAJourLePointagePourLeLancer(int... quilles) {
-		pointage += calculePointageDuLancer(quilles);
-		siLePointageDepasse50IlRedescendA25();
+	public void metsAJourLePointagePourLeLancer(String joueur, int... quilles) {
+		initialiseLePointageSiBesoinPour(joueur);
+		pointages.put(joueur, calculeLePointageCumulé(joueur, quilles));
+		siLePointageDepasse50IlRedescendA25(joueur);
 	}
 
-	private void siLePointageDepasse50IlRedescendA25() {
-		if (pointage > 50) {
-			pointage = 25;
+	private int calculeLePointageCumulé(String joueur, int[] quilles) {
+		return pointages.get(joueur) + new Lancer(quilles).calculePointage();
+	}
+
+	private void initialiseLePointageSiBesoinPour(String joueur) {
+		if (!pointages.containsKey(joueur)) {
+			pointages.put(joueur, 0);
 		}
 	}
 
-	private int calculePointageDuLancer(int[] quilles) {
-		return uneSeuleQuilleTombée(quilles) ? valeurQuilleTombée(quilles) : nombreDeQuillesTombées(quilles);
+	private void siLePointageDepasse50IlRedescendA25(String joueur) {
+		if (pointages.get(joueur) > 50) {
+			pointages.put(joueur, 25);
+		}
 	}
 
-	private boolean uneSeuleQuilleTombée(int[] quilles) {
-		return nombreDeQuillesTombées(quilles) == 1;
+	public int pointage(String joueur) {
+		return pointages.get(joueur);
 	}
 
-	private int valeurQuilleTombée(int[] quilles) {
-		return quilles[0];
+	public boolean gagnéePour(String joueur) {
+		return pointages.get(joueur) == 50;
 	}
 
-	private int nombreDeQuillesTombées(int[] quilles) {
-		return quilles.length;
-	}
-
-	public int pointage() {
-		return pointage;
-	}
-
-	public boolean gagnée() {
-		return pointage == 50;
-	}
-
-	private int pointage;
+	private Map<String, Integer> pointages = new HashMap<>();
 }

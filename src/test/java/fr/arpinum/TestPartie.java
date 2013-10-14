@@ -14,73 +14,66 @@ public class TestPartie {
 
 	@Test
 	public void siUnJoueurFaitTomberUneQuilleIlMarqueLaValeurDeLaQuille() {
-		partie.metsAJourLePointagePourLeLancer(8);
+		partie.metsAJourLePointagePourLeLancer("Michael", 8);
 
-		int pointage = partie.pointage();
+		int pointage = partie.pointage("Michael");
 
 		alors().le(pointage).est(8);
 	}
 
 	@Test
 	public void siUnJoueurFaitTomberPlusieursQuillesIlMarqueLeNombreDeQuilles() {
-		partie.metsAJourLePointagePourLeLancer(3, 6);
+		partie.metsAJourLePointagePourLeLancer("Michael", 3, 6);
 
-		int pointage = partie.pointage();
+		int pointage = partie.pointage("Michael");
 
 		alors().le(pointage).est(2);
 	}
 
 	@Test
 	public void lePointageDuJoueurEstLeCumulDePlusieursLancers() {
-		partie.metsAJourLePointagePourLeLancer(1);
-		partie.metsAJourLePointagePourLeLancer(3);
+		partie.metsAJourLePointagePourLeLancer("Michael", 1);
+		partie.metsAJourLePointagePourLeLancer("Michael", 3);
 
-		int pointage = partie.pointage();
+		int pointage = partie.pointage("Michael");
 
 		alors().le(pointage).est(4);
 	}
 
 	@Test
 	public void siLeJoueurAtteint50PointsIlAGagnéLaPartie() {
-		leJoueurMarque50Points();
+		partie.metsAJourLePointagePourLeLancer("Michael", 50);
 
-		boolean partieGagnée = partie.gagnée();
+		boolean partieGagnée = partie.gagnéePour("Michael");
 
 		alors().ceci(partieGagnée).estVrai();
 	}
 
-	private void leJoueurMarque50Points() {
-		leJoueurMarque40Points();
-		partie.metsAJourLePointagePourLeLancer(10);
-	}
-
 	@Test
 	public void siLeJoueurAMoinsDe50PointsIlNAPasGagnéLaPartie() {
-		partie.metsAJourLePointagePourLeLancer(1);
+		partie.metsAJourLePointagePourLeLancer("Michael", 1);
 
-		boolean partieGagnée = partie.gagnée();
+		boolean partieGagnée = partie.gagnéePour("Michael");
 
 		alors().ceci(partieGagnée).estFaux();
 	}
 
 	@Test
 	public void siLeJoueurDepasse50PointsIlRedescendA25Points() {
-		leJoueurMarque51Points();
+		partie.metsAJourLePointagePourLeLancer("Michael", 51);
 
-		int pointage = partie.pointage();
+		int pointage = partie.pointage("Michael");
 
 		alors().le(pointage).est(25);
 	}
 
-	private void leJoueurMarque51Points() {
-		leJoueurMarque40Points();
-		partie.metsAJourLePointagePourLeLancer(11);
-	}
+	@Test
+	public void leJeuEstMultijoueur() {
+		partie.metsAJourLePointagePourLeLancer("Michael", 1);
+		partie.metsAJourLePointagePourLeLancer("Charles", 4);
 
-	private void leJoueurMarque40Points() {
-		for (int i = 0; i < 4; i++) {
-			partie.metsAJourLePointagePourLeLancer(10);
-		}
+		alors().le(partie.pointage("Michael")).est(1);
+		alors().le(partie.pointage("Charles")).est(4);
 	}
 
 	private Partie partie;
