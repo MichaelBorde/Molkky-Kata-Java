@@ -16,7 +16,7 @@ public class TestPartie {
 	public void siUnJoueurFaitTomberUneQuilleIlMarqueLaValeurDeLaQuille() {
 		partie.metsAJourLePointagePourLeLancer("Michael", 8);
 
-		int pointage = partie.pointage("Michael");
+		int pointage = partie.pointagePour("Michael");
 
 		alors().le(pointage).est(8);
 	}
@@ -25,7 +25,7 @@ public class TestPartie {
 	public void siUnJoueurFaitTomberPlusieursQuillesIlMarqueLeNombreDeQuilles() {
 		partie.metsAJourLePointagePourLeLancer("Michael", 3, 6);
 
-		int pointage = partie.pointage("Michael");
+		int pointage = partie.pointagePour("Michael");
 
 		alors().le(pointage).est(2);
 	}
@@ -35,7 +35,7 @@ public class TestPartie {
 		partie.metsAJourLePointagePourLeLancer("Michael", 1);
 		partie.metsAJourLePointagePourLeLancer("Michael", 3);
 
-		int pointage = partie.pointage("Michael");
+		int pointage = partie.pointagePour("Michael");
 
 		alors().le(pointage).est(4);
 	}
@@ -62,7 +62,7 @@ public class TestPartie {
 	public void siLeJoueurDepasse50PointsIlRedescendA25Points() {
 		partie.metsAJourLePointagePourLeLancer("Michael", 51);
 
-		int pointage = partie.pointage("Michael");
+		int pointage = partie.pointagePour("Michael");
 
 		alors().le(pointage).est(25);
 	}
@@ -72,8 +72,8 @@ public class TestPartie {
 		partie.metsAJourLePointagePourLeLancer("Michael", 1);
 		partie.metsAJourLePointagePourLeLancer("Charles", 4);
 
-		alors().le(partie.pointage("Michael")).est(1);
-		alors().le(partie.pointage("Charles")).est(4);
+		alors().le(partie.pointagePour("Michael")).est(1);
+		alors().le(partie.pointagePour("Charles")).est(4);
 	}
 
 	private Partie partie;

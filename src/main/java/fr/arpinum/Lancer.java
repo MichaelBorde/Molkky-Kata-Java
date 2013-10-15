@@ -1,6 +1,6 @@
 package fr.arpinum;
 
-public class Lancer {
+class Lancer {
 
 	public Lancer(int[] quilles) {
 		this.quilles = quilles;
@@ -22,5 +22,5 @@ public class Lancer {
 		return quilles.length;
 	}
 
-	private int[] quilles;
+	private final int[] quilles;
 }
