@@ -16,18 +16,14 @@ public class TestPartie {
 	public void siUnJoueurFaitTomberUneQuilleIlMarqueLaValeurDeLaQuille() {
 		partie.metsAJourLePointagePourLeLancer("Michael", 8);
 
-		int pointage = partie.pointagePour("Michael");
-
-		alors().le(pointage).est(8);
+		affirmeQueLePointageEstCeluiAttendu("Michael", 8);
 	}
 
 	@Test
 	public void siUnJoueurFaitTomberPlusieursQuillesIlMarqueLeNombreDeQuilles() {
 		partie.metsAJourLePointagePourLeLancer("Michael", 3, 6);
 
-		int pointage = partie.pointagePour("Michael");
-
-		alors().le(pointage).est(2);
+		affirmeQueLePointageEstCeluiAttendu("Michael", 2);
 	}
 
 	@Test
@@ -35,9 +31,7 @@ public class TestPartie {
 		partie.metsAJourLePointagePourLeLancer("Michael", 1);
 		partie.metsAJourLePointagePourLeLancer("Michael", 3);
 
-		int pointage = partie.pointagePour("Michael");
-
-		alors().le(pointage).est(4);
+		affirmeQueLePointageEstCeluiAttendu("Michael", 4);
 	}
 
 	@Test
@@ -62,9 +56,7 @@ public class TestPartie {
 	public void siLeJoueurDepasse50PointsIlRedescendA25Points() {
 		partie.metsAJourLePointagePourLeLancer("Michael", 51);
 
-		int pointage = partie.pointagePour("Michael");
-
-		alors().le(pointage).est(25);
+		affirmeQueLePointageEstCeluiAttendu("Michael", 25);
 	}
 
 	@Test
@@ -74,6 +66,11 @@ public class TestPartie {
 
 		alors().le(partie.pointagePour("Michael")).est(1);
 		alors().le(partie.pointagePour("Charles")).est(4);
+	}
+
+	private void affirmeQueLePointageEstCeluiAttendu(String joueur, int pointageAttendu) {
+		int pointage = partie.pointagePour(joueur);
+		alors().le(pointage).est(pointageAttendu);
 	}
 
 	private Partie partie;
